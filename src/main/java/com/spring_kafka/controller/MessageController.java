@@ -1,15 +1,16 @@
 package com.spring_kafka.controller;
 
 import com.spring_kafka.constants.SpringKafkaConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(SpringKafkaConstants.BASE_PATH)
 public class MessageController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MessageController.class);
 
     private KafkaTemplate<String, String> kafkaTemplate;
 
@@ -19,6 +20,7 @@ public class MessageController {
 
     @PostMapping
     public void publish(@RequestBody String requestBody){
+        LOGGER.info(String.format("MESSAGE SENT: %s", requestBody));
         kafkaTemplate.send(SpringKafkaConstants.KAFKA_TOPIC, requestBody);
     }
 }

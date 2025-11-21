@@ -11,7 +11,6 @@ public class KafkaListeners {
             topics = SpringKafkaConstants.KAFKA_TOPIC,
             groupId = SpringKafkaConstants.GROUP_ID
     )
-
     void listener(String data) {
         System.out.println("Listener received data: " + data + " ");
     }
