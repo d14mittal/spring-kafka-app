@@ -8,6 +8,7 @@ class SpringKafkaApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("Tets1");
 	}
 
 }
